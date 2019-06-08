@@ -1,10 +1,20 @@
 import SearchInput from "./SearchInput"
 import React, { Component } from "react";
+import API from "../utils/API"
+
 
 class Search extends Component {
 
     state = {
         booksInput: "",
+    }
+
+    componentDidMount() {
+        API.getBooks()
+            .then(
+                res => (console.log(res.data))
+
+            );
     }
 
     handleInputChange = event => {
