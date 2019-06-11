@@ -72,7 +72,8 @@ class Search extends Component {
     render() {
         return (
             <div>
-                <h1 className="center-align">Google Books Search</h1>
+                <h2>Search for a Book</h2>
+                <h5>Use the search bar to look for books, feel free to save them to the saved list.</h5>
                 <SearchInput
                     handleInputChange={this.handleInputChange}
                     handleFormSubmit={this.handleFormSubmit}
@@ -101,6 +102,7 @@ class Search extends Component {
                     )
 
                 }
+
 
                 {/* <a className="btn" onClick={this.modalToggle}>Modal Test</a> */}
 

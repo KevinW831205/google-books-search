@@ -15,7 +15,7 @@ function Books(props) {
                 </div>
                 <div className="card-action" >
                     <div className="row">
-                        <a className="left-align col s10" href={props.link}>link to google books</a>
+                        <a className="left-align col s10" href={props.link} target="blank">link to google books</a>
 
                         {/* a boolean saving props is passed in, render a save button for true and unsave button for false*/}
                         {props.saving

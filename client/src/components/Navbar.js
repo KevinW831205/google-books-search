@@ -7,6 +7,10 @@ function Navbar() {
         <div class="navbar-fixed">
             <nav>
                 <div className="nav-wrapper green">
+
+                    <a href="#" className="brand-logo center">books search</a>
+
+
                     <ul className="right hide-on-med-and-down">
                         <li className={window.location.pathname === "/" ? "active" : ""}>
                             <Link

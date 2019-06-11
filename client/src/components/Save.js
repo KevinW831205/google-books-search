@@ -37,7 +37,7 @@ class Save extends Component {
     render() {
         return (
             <div>
-                <h1 className="center-align">Google Books Saved</h1>
+                <h2 className="center-align">Books Saved</h2>
                 {this.state.books.length ? (
                     this.state.books.map(
                         books => (
