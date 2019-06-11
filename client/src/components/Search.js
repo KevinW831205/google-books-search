@@ -5,9 +5,17 @@ import Books from "./Books"
 
 class Search extends Component {
 
+    // constructor(props) {
+    //     super(props);
+    //     this.modalToggle = this.modalToggle.bind(this);
+    //     this.state = { modalToggled: false }
+    // }
+
     state = {
         booksInput: "",
         books: [],
+        searched: false,
+        modalToggled: false
     }
 
     componentDidMount() {
@@ -17,6 +25,12 @@ class Search extends Component {
 
             );
     }
+
+    // modalToggle = event => {
+    //     this.setState(prevState => {
+    //         modalToggled: !prevState.modalToggled
+    //     })
+    // }
 
     handleInputChange = event => {
         // Getting the value and name of the input which triggered the change
@@ -32,7 +46,10 @@ class Search extends Component {
         console.log("submit")
         this.bookQuery(this.state.booksInput)
         this.setState(
-            { booksInput: "" }
+            {
+                booksInput: "",
+                searched: true,
+            }
         )
     };
 
@@ -55,29 +72,37 @@ class Search extends Component {
     render() {
         return (
             <div>
-                <h1>Google Books Search</h1>
+                <h1 className="center-align">Google Books Search</h1>
                 <SearchInput
                     handleInputChange={this.handleInputChange}
                     handleFormSubmit={this.handleFormSubmit}
                     booksInput={this.state.booksInput}
                 />
-                {this.state.books.length ? (
-                    this.state.books.map(
-                        books => (
-                            < Books
-                                key={books.volumeInfo.infoLink}
-                                title={books.volumeInfo.title}
-                                authors={books.volumeInfo.authors}
-                                image={books.volumeInfo.imageLinks.thumbnail}
-                                link={books.volumeInfo.infoLink}
-                                description={books.volumeInfo.description}
-                                saving={true}
-                                saveBook = {API.saveBook}
-                            />
-                        )
-                    )
-                ) : (<h3>No results</h3>)}
 
+
+                {
+                    this.state.searched && (
+                        this.state.books.length ? (
+                            this.state.books.map(
+                                books => (
+                                    < Books
+                                        key={books.volumeInfo.infoLink}
+                                        title={books.volumeInfo.title}
+                                        authors={books.volumeInfo.authors}
+                                        image={books.volumeInfo.imageLinks.thumbnail}
+                                        link={books.volumeInfo.infoLink}
+                                        description={books.volumeInfo.description}
+                                        saving={true}
+                                        saveBook={API.saveBook}
+                                    />
+                                )
+                            )
+                        ) : (<h3>No results</h3>)
+                    )
+
+                }
+
+                {/* <a className="btn" onClick={this.modalToggle}>Modal Test</a> */}
 
             </div >
         )

@@ -12,34 +12,49 @@ class Save extends Component {
 
 
     componentDidMount() {
+        // on load get books data and set state for render
         API.getBooks()
             .then(
                 res => {
                     console.log(res.data)
-                    this.setState({books: res.data})
+                    this.setState({ books: res.data })
                 }
             );
+    }
+
+    // function to remove a book from mongodb by passing in the book data.
+    deleteBook = id => {
+        console.log(id)
+        API.deleteBook(id)
+            .then(
+                res => {
+                    console.log(res.data);
+                    this.setState({ books: res.data })
+                }
+            )
     }
 
     render() {
         return (
             <div>
-                <h1>Google Books Saved</h1>
+                <h1 className="center-align">Google Books Saved</h1>
                 {this.state.books.length ? (
                     this.state.books.map(
                         books => (
                             < Books
                                 key={books.link}
+                                id={books._id}
                                 title={books.title}
                                 authors={books.authors}
                                 image={books.image}
                                 link={books.link}
                                 description={books.description}
+                                deleteBook={this.deleteBook}
                                 saving={false}
                             />
                         )
                     )
-                ) : (<h3>No results</h3>)}
+                ) : (<h3>No saved Books</h3>)}
 
 
             </div >

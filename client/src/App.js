@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import Save from "./components/Save"
 import Search from "./components/Search"
+import Navbar from "./components/Navbar"
 import { BrowserRouter as Router, Route } from "react-router-dom";
 // import socketIOClient from "socket.io-client";
 
@@ -38,9 +38,10 @@ class App extends Component {
     // const { response } = this.state;
     return (
       <Router>
-        <div >
+        <Navbar />
+        <div className="container">
           <Route exact path="/" component={Search} />
-          <Route exact path="/Save" component={Save} />
+          <Route exact path="/save" component={Save} />
 
           {/* <div style={{ textAlign: "center" }}>
             {response
