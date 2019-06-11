@@ -5,7 +5,7 @@ function Books(props) {
     return (
         <div className="card horizontal">
             <div className="card-image">
-                <img class="book-image" src={props.image} alt={`${props.title}`} />
+                <img className="book-image" src={props.image} alt={`${props.title}`} />
             </div>
             <div className="card-stacked">
                 <div className="card-content">
@@ -22,7 +22,8 @@ function Books(props) {
                             ?
                             (
                                 <a className="waves-effect waves-light btn" onClick={
-                                    () =>
+                                    () => {
+                                        // props.socketEmit()
                                         props.saveBook({
                                             title: props.title,
                                             authors: props.authors,
@@ -30,8 +31,13 @@ function Books(props) {
                                             link: props.link,
                                             description: props.description
                                         })
-                                            .then(res => console.log(res))
-                                            .catch(err => console.log(err))}
+                                            .then(res => {
+                                                console.log(res)
+                                                // console.log(props.socketBookResponse)
+                                            })
+                                            .catch(err => console.log(err))
+                                    }
+                                }
 
                                 >Save</a>
                             ) : (

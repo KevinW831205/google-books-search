@@ -1,6 +1,9 @@
 import React from "react";
 import "./SearchInput.css"
 
+const PORT = process.env.PORT || 3001;
+
+
 function SearchInput(props) {
     return (<form className="form">
         <div className="row">

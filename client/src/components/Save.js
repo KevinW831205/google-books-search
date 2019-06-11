@@ -24,12 +24,16 @@ class Save extends Component {
 
     // function to remove a book from mongodb by passing in the book data.
     deleteBook = id => {
-        console.log(id)
         API.deleteBook(id)
             .then(
                 res => {
                     console.log(res.data);
-                    this.setState({ books: res.data })
+                    API.getBooks()
+                        .then(
+                            res => {
+                                this.setState({ books: res.data })
+                            }
+                        );
                 }
             )
     }

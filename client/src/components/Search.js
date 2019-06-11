@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import API from "../utils/API"
 import SearchInput from "./SearchInput"
 import Books from "./Books"
+import socketIOClient from "socket.io-client"
+
+const PORT = process.env.PORT || "http://localhost:3001";
 
 class Search extends Component {
 
@@ -11,11 +14,17 @@ class Search extends Component {
     //     this.state = { modalToggled: false }
     // }
 
-    state = {
-        booksInput: "",
-        books: [],
-        searched: false,
-        modalToggled: false
+    
+    constructor() {
+        super();
+        this.state = {
+            booksInput: "",
+            books: [],
+            searched: false,
+            modalToggled: false,
+            response: false,
+            endpoint: PORT
+        }
     }
 
     componentDidMount() {
@@ -24,6 +33,12 @@ class Search extends Component {
                 res => (console.log(res.data))
 
             );
+
+        // socket 
+        const { endpoint } = this.state;
+        const socket = socketIOClient(endpoint);
+        socket.emit("add book","socket working")
+        socket.on("book added", data => this.setState({ response: data }))
     }
 
     // modalToggle = event => {
@@ -70,6 +85,7 @@ class Search extends Component {
     }
 
     render() {
+        const { response } = this.state
         return (
             <div>
                 <h2>Search for a Book</h2>
@@ -95,6 +111,7 @@ class Search extends Component {
                                         description={books.volumeInfo.description}
                                         saving={true}
                                         saveBook={API.saveBook}
+                                        // socketBookResponse={response}
                                     />
                                 )
                             )
