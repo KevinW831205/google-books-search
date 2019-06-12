@@ -2,7 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css"
 
-function Navbar() {
+function Navbar(props) {
+    console.log(props)
     return (
         <div className="navbar-fixed">
             <nav>
@@ -12,7 +13,7 @@ function Navbar() {
 
 
                     <ul className="right hide-on-med-and-down">
-                        {/* <li className={window.location.pathname === "/" ? "active" : ""}> */}
+                        {/* <li className={windows.location === "/" ? "active" : ""}> */}
                         <li>
                             <Link
                                 to="/"
@@ -20,7 +21,7 @@ function Navbar() {
                                 Search
                             </Link>
                         </li>
-                        {/* <li className={window.location.pathname === "/save" ? "active" : ""}> */}
+                        {/* <li className={props.location === "/save" ? "active" : ""}> */}
                         <li>
                             <Link
                                 to="/save"
